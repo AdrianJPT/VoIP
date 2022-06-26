@@ -1,0 +1,75 @@
+
+===========
+Assing static IP 
+===========
+nmtui
+
+==========
+Configure Asterisk
+==========
+
+cd /etc/asterisk/
+
+
+vim sip.conf ###OBJECTS_pattrens
+
+[<patterns_name>]
+type=friend
+host=dynamic
+secret=<password>
+context=<context_extensions.conf EJEM "patterns_name">
+
+[sip_patterns] #INBOUND CALLS
+type=friend
+host=<IP_remote>
+context=<context>
+-----------------------------------
+vim sip_adidicional.conf
+
+-----------------------------------
+vim extensions.conf ########### Context= groups_rules_allowness
+
+#####SIP Extension EJEM
+#[<context>] #ROUTES HOST_context CAN call
+#exten=>_"<XXXXX>",1,Dial(SIP/"<pattern_trunk_host>"/${EXTEN},20)
+
+[context] ##### ALLOW CALLS
+exten=>_<host_extesion_"27XXX">,1,Dial(SIP/${EXTEN},20)
+
+
+
+
+
+
+
+
+=========
+Create an user GUI
+=========
+-User Extension
+-Display Name
+-secret(paswword)
+
+#asterisk -rvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+#sip show peers
+
+============
+Trunks
+============
+- Trunk name
+- PEER Details
+>
+host=<IP_OF_UR_HOST>
+typer= friend		#friend= host+, remote+
+
+==========
+Outbound route
+==========
+- route name
+-------------------
+- (prepend) + *<prefix> | <REMOTE PATTERN EJEM 24XXX>
+
+
+
+
+
